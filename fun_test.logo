@@ -6,11 +6,11 @@ To walk :seq :depth :limit :len
     walk 'b' :depth + 1 :limit :len * 1.618034
   ]
   if :seq = 'b' [
-    left 36
+    left 72
     forward :len
     walk 'a' :depth + 1 :limit :len * 1.618034
     walk 'b' :depth + 1 :limit :len * 1.618034
   ]
 end
 clearscreen
-walk 'a' 1 11 0.2
+walk 'a' 1 6 2.2
