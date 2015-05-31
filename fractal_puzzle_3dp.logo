@@ -50,70 +50,59 @@ TO gen :r :s :k :depth
     if :k = 't' [
       ; generate a t and w
       ; first the t
-      rt 4 * 36
-      fd :s * 0.618034
-      lt 4 * 36
       
       
-      lt 1 * 36
+      lt 0 * 36
       fd :s * 0.618034
       rt 3 * 36
       setcolor :depth
       t :s * 0.618034
       gen (:r + 0)%10 :s * 0.618034 't' :depth - 1
       
-      rt 5 * 36
+      lt 2 * 36
       fd :s * 0.618034
-      rt 4 * 36
+      rt 3 * 36
       setcolor :depth
       w :s * 0.618034
       gen (:r + 3)%10 :s * 0.618034 'w' :depth - 1
 
-      rt 2 * 36
-      fd :s
+      rt 1 * 36
+      fd :s * 0.618034
+      rt 1 * 36
+      fd :s * 0.618034
 
-      lt 3 * 36
-
-      rt 4 * 36
-      fd -:s  * 0.618034
-      lt 4 * 36
-    
-    
+      rt 4 * 36    
     ]
     if :k = 'w' [
       ; w -> w t w
       ; first generate w
-      rt 1 * 36
-      ;fd :s
-      ;rt 5 * 36
+      rt 2 * 36
+      fd :s
+      rt 5 * 36
       setcolor :depth
       w :s * 0.618034
       gen (:r +0)%10 :s * 0.618034 'w' :depth - 1
       
-      ;fd :s
-      ;rt 5 * 36
       
-      ; next a t
-      
-      lt 1 * 36
+      rt 2 * 36
       fd :s * 0.618034
-      ;rt 5 * 36
+      lt 3 * 36
       setcolor :depth
       t :s * 0.618034
       gen (:r - 0)%10 :s * 0.618034 't' :depth - 1
       
       ; last another w
       
-      lt 2 * 36
+      rt 2 * 36
+      fd :s * 0.618034
+      rt 2 * 36
       fd :s * 0.618034
       rt 4 * 36
-      fd :s * 0.618034
-      rt 6 * 36
       setcolor :depth
       w :s * 0.618034
       gen (:r + 0)%10 :s * 0.618034 'w' :depth - 1
-      lt 3 * 36
-      fd :s
+      rt 1 * 36
+      fd :s * 1.618034
       lt 5 * 36
     ]
   ]
@@ -122,8 +111,9 @@ END
   
 clearscreen
 setcolor "brown
+fd -160
 lt 90
-fd 300
+fd 280
 rt 90
 
 ; level one test of 't'
@@ -132,7 +122,7 @@ gen 0 300 't' 5
 
 setcolor "brown
 rt 90
-fd 600
+fd 480
 lt 90
 ; level one test of 'w'
 w 300
