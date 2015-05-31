@@ -1,6 +1,6 @@
-TO t :r :s
+TO t :s
   pendown
-  rt :r * 36
+  rt 2 * 36
   forward :s
   left 4 * 36
   forward :s
@@ -9,13 +9,13 @@ TO t :r :s
   left 4 * 36
   forward :s
   left 1 * 36
-  lt :r * 36 
+  lt 2 * 36
   penup
 END
 
-TO w :r :s
+TO w :s
   pendown
-  rt :r * 36
+  rt 1 * 36
   forward :s
   left 2 * 36
   forward :s
@@ -24,38 +24,98 @@ TO w :r :s
   left 2 * 36
   forward :s
   left 3 * 36
-  lt :r * 36 
+  lt 1 * 36
   penup
 END 
 
+; generate rotation scale kind recursion depth
 TO gen :r :s :k :depth
-  ifelse :depth < 1 [ 
+  ifelse :depth < 1 [
+    setcolor :depth
     if :k = 't' [
-      t :r :s
+      t :s
     ]
     if :k = 'w' [
-      w :r :s
+      w :s
     ]
   ] [
     if :k = 't' [
-      gen (:r + 2)%10 :s * 0.618034 'w' :depth - 1
+      ; generate a t and w
+      ; first the t
+      lt 0 * 36
+      fd :s * 0.618034
+      rt 3 * 36
+      setcolor :depth
+      t :s * 0.618034
+      gen (:r + 0)%10 :s * 0.618034 't' :depth - 1
+      
+      lt 2 * 36
+      fd :s * 0.618034
+      rt 3 * 36
+      setcolor :depth
+      w :s * 0.618034
+      gen (:r + 3)%10 :s * 0.618034 'w' :depth - 1
+
+      rt 1 * 36
+      fd :s * 0.618034
+
+      rt 1 * 36
+      fd :s * 0.618034
+
+      rt 4 * 36
     ]
     if :k = 'w' [
-      
-      gen (:r + 1)%10 :s * 0.618034 'w' :depth - 1
-      lt 1 * 36
-      fd :s * 0.618034
-      
-      gen (:r + 2)%10 :s * 0.618034 't' :depth - 1
+      ; w -> w t w
+      ; first generate w
+      rt 1 * 36
+      fd :s
+      rt 5 * 36
+      setcolor :depth
+      w :s * 0.618034
+      gen (:r +0)%10 :s * 0.618034 'w' :depth - 1
       
       fd :s
-      gen (:r + 7)%10 :s * 0.618034 'w' :depth - 1
+      rt 5 * 36
+      
+      ; next a t
+      
+      lt 1* 36
+      fd :s
+      rt 5 * 36
+      setcolor :depth
+      t :s * 0.618034
+      gen (:r - 0)%10 :s * 0.618034 't' :depth - 1
+      
+      ; last another w
+      
+      rt 3 * 36
+      fd :s
+      rt 5 * 36
+      setcolor :depth
+      w :s * 0.618034
+      gen (:r + 0)%10 :s * 0.618034 'w' :depth - 1
+      rt 1 * 36
+      fd :s * 1.618034
+      lt 4 * 36
     ]
   ]
   
 END
   
 clearscreen
+setcolor "brown
+lt 90
+fd 300
+rt 90
+
+; level one test of 't'
+t 200
+gen 0 200 't' 2
+
+setcolor "brown
+rt 90
+fd 600
+lt 90
 ; level one test of 'w'
-w 0 200
-gen 0 200 'w' 1
+w 200
+gen 0 200 'w' 2
