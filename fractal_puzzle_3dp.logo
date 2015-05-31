@@ -1,8 +1,6 @@
-TO t :x :y :r :s
-  penup
-  setxy :x :y
+TO t :r :s
   pendown
-  seth :r * 36
+  rt :r * 36
   forward :s
   left 4 * 36
   forward :s
@@ -11,14 +9,13 @@ TO t :x :y :r :s
   left 4 * 36
   forward :s
   left 1 * 36
-  forward :s
+  lt :r * 36 
+  penup
 END
 
-TO w :x :y :r :s
-  penup
-  setxy :x :y
+TO w :r :s
   pendown
-  seth :r * 36
+  rt :r * 36
   forward :s
   left 2 * 36
   forward :s
@@ -27,9 +24,37 @@ TO w :x :y :r :s
   left 2 * 36
   forward :s
   left 3 * 36
-  forward :s
+  lt :r * 36 
+  penup
 END 
 
+TO gen :r :s :k :depth
+  ifelse :depth < 1 [ 
+    if :k = 't' [
+      t :r :s
+    ]
+    if :k = 'w' [
+      w :r :s
+    ]
+  ] [
+    if :k = 't' [
+      gen (:r + 2)%10 :s * 0.618034 'w' :depth - 1
+    ]
+    if :k = 'w' [
+      ;rt 8 * 36
+      gen (:r + 1)%10 :s * 0.618034 'w' :depth - 1
+      ;lt 2 * 36
+      ;fd :s * 0.618034
+      ;rt 2 * 36
+      ;gen (:r + 8)%10 :s * 0.618034 't' :depth - 1
+      
+      ;gen (:r + 8)%10 :s * 0.618034 'w' :depth - 1
+    ]
+  ]
+  
+END
+  
 clearscreen
-t 0 0 4 30
-w 0 0 0 30
+
+w 0 200
+gen 0 200 'w' 1
