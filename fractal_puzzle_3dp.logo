@@ -42,7 +42,11 @@ TO gen :r :s :k :depth
     if :k = 't' [
       ; generate a t and w
       ; first the t
-      lt 0 * 36
+      lt 2 * 36
+      fd :s - (:s * 0.618034)
+      rt 2 * 36
+      
+      lt -1 * 36
       fd :s * 0.618034
       rt 3 * 36
       setcolor :depth
@@ -58,11 +62,13 @@ TO gen :r :s :k :depth
 
       rt 1 * 36
       fd :s * 0.618034
-
       rt 1 * 36
       fd :s * 0.618034
-
-      rt 4 * 36
+      rt 3 * 36
+      
+      rt 3 * 36
+      fd :s - (:s * 0.618034)
+      lt 3 * 36
     ]
     if :k = 'w' [
       ; w -> w t w
@@ -110,7 +116,7 @@ rt 90
 
 ; level one test of 't'
 t 200
-gen 0 200 't' 2
+gen 0 200 't' 4
 
 setcolor "brown
 rt 90
@@ -118,4 +124,4 @@ fd 600
 lt 90
 ; level one test of 'w'
 w 200
-gen 0 200 'w' 2
+gen 0 200 'w' 5
