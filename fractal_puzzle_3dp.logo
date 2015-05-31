@@ -1,0 +1,35 @@
+TO t :x :y :r :s
+  penup
+  setxy :x :y
+  pendown
+  seth :r * 36
+  forward :s
+  left 4 * 36
+  forward :s
+  left 1 * 36
+  forward :s
+  left 4 * 36
+  forward :s
+  left 1 * 36
+  forward :s
+END
+
+TO w :x :y :r :s
+  penup
+  setxy :x :y
+  pendown
+  seth :r * 36
+  forward :s
+  left 2 * 36
+  forward :s
+  left 3 * 36
+  forward :s
+  left 2 * 36
+  forward :s
+  left 3 * 36
+  forward :s
+END 
+
+clearscreen
+t 0 0 4 30
+w 0 0 0 30
