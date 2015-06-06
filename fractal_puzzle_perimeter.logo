@@ -1,0 +1,71 @@
+;
+TO t1 :s :l
+  ifelse :l < 0 [
+    fd :s
+    lt 4 * 36
+  ] [
+    t2 :s * 0.618034 :l - 1
+    w2 :s * 0.618034 :l - 1
+  ]
+END
+
+TO t2 :s :l
+  ifelse :l < 0 [
+    fd :s
+    lt 1 * 36
+  ] [
+    w34 :s * 0.618034 :l - 1
+    t4 :s * 0.618034 :l - 1
+  ]
+END
+
+TO t4 :s :l
+  ifelse :l < 0 [
+    penup
+    lt 1 * 36
+    fd :s
+    pendown
+    lt 4 * 36
+    fd :s
+  ] [
+    t1 :s * 0.618034 :l - 1
+  ]
+END
+
+;
+TO w1 :s :l
+  ifelse :l < 0 [
+    fd :s
+    lt 2 * 36
+  ] [
+    w34 :s * 0.618034 :l - 1
+    t4 :s * 0.618034 :l - 1
+  ]
+END
+
+TO w2 :s :l
+  ifelse :l < 0 [
+    fd :s
+    lt 3 * 36
+  ] [
+    w34 :s * 0.618034 :l - 1
+  ]
+END
+
+TO w34 :s :l
+  ifelse :l < 0 [
+    fd :s
+    lt 2 * 36
+    fd :s
+    lt 3 * 36
+  ] [
+    w1 :s * 0.618034 :l - 1
+    t2 :s * 0.618034 :l - 1
+    w2 :s * 0.618034 :l - 1
+  ]
+END
+
+
+clearscreen
+setcolor "brown
+w1 300 1
