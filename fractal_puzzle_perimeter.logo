@@ -71,25 +71,55 @@ END
 
 ;
 TO w1 :s :l
+  make "pp pos
+  make "ph heading
   ifelse :l < 1 [
+    rt 1 * 36
+    pendown
     fd :s
-    lt 2 * 36
   ] [
+    penup
+    rt 2 * 36
+    fd :s
+    rt 5 * 36
     w34 :s * 0.618034 :l - 1
+    rt 2 * 36
+    fd :s * 0.618034
+    lt 3 * 36
     t4 :s * 0.618034 :l - 1
   ]
+  penup
+  setpos :pp
+  setheading :ph
 END
 
 TO w2 :s :l
+  make "pp pos
+  make "ph heading
   ifelse :l < 1 [
+    penup
+    rt 1 * 36
     fd :s
-    lt 3 * 36
+    lt 2 * 36
+    pendown
+    fd :s
   ] [
+    penup
+    rt 1 * 36
+    fd :s
+    lt 2 * 36
+    fd :s
+    rt 5 * 36
     w34 :s * 0.618034 :l - 1
   ]
+  penup
+  setpos :pp
+  setheading :ph
 END
 
 TO w34 :s :l
+  make "pp pos
+  make "ph heading
   ifelse :l < 1 [
     fd :s
     lt 2 * 36
@@ -100,11 +130,14 @@ TO w34 :s :l
     t2 :s * 0.618034 :l - 1
     w2 :s * 0.618034 :l - 1
   ]
+  penup
+  setpos :pp
+  setheading :ph
 END
 
 
 clearscreen
 setcolor "brown
-t1 200 0
-t2 200 0
-t4 200 0
+w1 200 0
+w2 200 0
+w34 200 0
