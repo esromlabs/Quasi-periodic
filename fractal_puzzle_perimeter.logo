@@ -1,40 +1,77 @@
 ;
 TO t1 :s :l
-  ifelse :l < 0 [
+  make "pp pos
+  make "ph heading
+  ifelse :l < 1 [
+    rt 2 * 36
+    pendown
     fd :s
-    lt 4 * 36
+    penup
   ] [
+    fd :s * 0.618034
+    rt 3 * 36
     t2 :s * 0.618034 :l - 1
+    lt 2 * 36
+    fd :s * 0.618034
+    rt 2 * 36
     w2 :s * 0.618034 :l - 1
   ]
+  penup
+  setpos :pp
+  setheading :ph
 END
 
 TO t2 :s :l
-  ifelse :l < 0 [
-    fd :s
-    lt 1 * 36
-  ] [
-    w34 :s * 0.618034 :l - 1
-    t4 :s * 0.618034 :l - 1
-  ]
-END
-
-TO t4 :s :l
-  ifelse :l < 0 [
+  make "pp pos
+  make "ph heading
+  ifelse :l < 1 [
     penup
-    lt 1 * 36
+    rt 2 *36
     fd :s
     pendown
     lt 4 * 36
     fd :s
   ] [
+    penup
+    rt 0.5 *36
+    fd :s
+    rt 4.5 *36
+    w34 :s * 0.618034 :l - 1
+    rt 2 * 36
+    fd :s * 0.618034
+    lt 3 * 36
+    t4 :s * 0.618034 :l - 1
+  ]
+  penup
+  setpos :pp
+  setheading :ph
+END
+
+TO t4 :s :l
+  make "pp pos
+  make "ph heading
+  ifelse :l < 1 [
+    penup
+    rt 3 * 36
+    bk :s
+    pendown
+    fd :s
+    penup
+  ] [
+    penup
+    fd :s * 0.618034
+    rt 3 * 36
     t1 :s * 0.618034 :l - 1
   ]
+  penup
+  setpos :pp
+  setheading :ph
 END
+
 
 ;
 TO w1 :s :l
-  ifelse :l < 0 [
+  ifelse :l < 1 [
     fd :s
     lt 2 * 36
   ] [
@@ -44,7 +81,7 @@ TO w1 :s :l
 END
 
 TO w2 :s :l
-  ifelse :l < 0 [
+  ifelse :l < 1 [
     fd :s
     lt 3 * 36
   ] [
@@ -53,7 +90,7 @@ TO w2 :s :l
 END
 
 TO w34 :s :l
-  ifelse :l < 0 [
+  ifelse :l < 1 [
     fd :s
     lt 2 * 36
     fd :s
@@ -68,4 +105,6 @@ END
 
 clearscreen
 setcolor "brown
-w1 300 1
+t1 200 0
+t2 200 0
+t4 200 0
