@@ -1,4 +1,4 @@
-;
+;http://www.calormen.com/jslogo/
 TO t1 :s :l
   make "pp pos
   make "ph heading
@@ -121,14 +121,28 @@ TO w34 :s :l
   make "pp pos
   make "ph heading
   ifelse :l < 1 [
+    penup
+    fd :s * 1.618034
+    lt 4 * 36
+    pendown
     fd :s
     lt 2 * 36
     fd :s
-    lt 3 * 36
+    penup
+    rt 4 * 36
   ] [
+    penup
+    fd :s * 1.618034
+    rt 4 * 36
     w1 :s * 0.618034 :l - 1
+    fd :s * 0.618034
+    rt 2 * 36
     t2 :s * 0.618034 :l - 1
+    lt 2 * 36
+    fd :s * 0.618034
+    rt 3 * 36
     w2 :s * 0.618034 :l - 1
+    fd :s
   ]
   penup
   setpos :pp
