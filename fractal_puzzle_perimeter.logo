@@ -1,13 +1,14 @@
 ;http://www.calormen.com/jslogo/
 TO t1 :s :l
-  make "pp pos
-  make "ph heading
   ifelse :l < 1 [
     rt 2 * 36
     pendown
     fd :s
     penup
+    bk :s
+    lt 2 * 36
   ] [
+    penup
     fd :s * 0.618034
     rt 3 * 36
     t2 :s * 0.618034 :l - 1
@@ -15,22 +16,24 @@ TO t1 :s :l
     fd :s * 0.618034
     rt 2 * 36
     w2 :s * 0.618034 :l - 1
+    rt 4 * 36
+    fd :s
+    rt 4 * 36
   ]
   penup
-  setpos :pp
-  setheading :ph
 END
 
 TO t2 :s :l
-  make "pp pos
-  make "ph heading
   ifelse :l < 1 [
     penup
     rt 2 *36
     fd :s
-    pendown
     lt 4 * 36
+    pendown
     fd :s
+    penup
+    rt 2 *36
+    bk :s * 0.618034
   ] [
     penup
     rt 0.5 *36
@@ -41,15 +44,13 @@ TO t2 :s :l
     fd :s * 0.618034
     lt 3 * 36
     t4 :s * 0.618034 :l - 1
+    lt 3 * 36
+    bk :s * 0.618034
   ]
   penup
-  setpos :pp
-  setheading :ph
 END
 
 TO t4 :s :l
-  make "pp pos
-  make "ph heading
   ifelse :l < 1 [
     penup
     rt 3 * 36
@@ -57,26 +58,28 @@ TO t4 :s :l
     pendown
     fd :s
     penup
+    lt 3 * 36
   ] [
     penup
     fd :s * 0.618034
     rt 3 * 36
     t1 :s * 0.618034 :l - 1
+    lt 3 * 36
+    bk :s * 0.618034
   ]
   penup
-  setpos :pp
-  setheading :ph
 END
 
 
 ;
 TO w1 :s :l
-  make "pp pos
-  make "ph heading
   ifelse :l < 1 [
     rt 1 * 36
     pendown
     fd :s
+    penup
+    bk :s
+    lt 1 * 36
   ] [
     penup
     rt 2 * 36
@@ -87,15 +90,13 @@ TO w1 :s :l
     fd :s * 0.618034
     lt 3 * 36
     t4 :s * 0.618034 :l - 1
+    fd :s
+    rt 4 * 36
   ]
   penup
-  setpos :pp
-  setheading :ph
 END
 
 TO w2 :s :l
-  make "pp pos
-  make "ph heading
   ifelse :l < 1 [
     penup
     rt 1 * 36
@@ -103,6 +104,9 @@ TO w2 :s :l
     lt 2 * 36
     pendown
     fd :s
+    penup
+    rt 1 * 36
+    bk :s * 1.618034
   ] [
     penup
     rt 1 * 36
@@ -111,15 +115,16 @@ TO w2 :s :l
     fd :s
     rt 5 * 36
     w34 :s * 0.618034 :l - 1
+    lt 5 * 36
+    bk :s
+    rt 2 * 36
+    bk :s
+    lt 1 * 36
   ]
   penup
-  setpos :pp
-  setheading :ph
 END
 
 TO w34 :s :l
-  make "pp pos
-  make "ph heading
   ifelse :l < 1 [
     penup
     fd :s * 1.618034
@@ -129,7 +134,7 @@ TO w34 :s :l
     lt 2 * 36
     fd :s
     penup
-    rt 4 * 36
+    lt 4 * 36
   ] [
     penup
     fd :s * 1.618034
@@ -145,13 +150,14 @@ TO w34 :s :l
     fd :s
   ]
   penup
-  setpos :pp
-  setheading :ph
 END
 
 
 clearscreen
 setcolor "brown
+t1 200 0
+t2 200 0
+t4 200 0
 w1 200 0
 w2 200 0
 w34 200 0
