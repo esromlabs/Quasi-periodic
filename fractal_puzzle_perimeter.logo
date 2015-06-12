@@ -1,6 +1,7 @@
 ;http://www.calormen.com/jslogo/
 TO t1 :s :l
   ifelse :l < 1 [
+    ; draw the t1 segment
     rt 2 * 36
     pendown
     fd :s
@@ -9,18 +10,29 @@ TO t1 :s :l
     lt 2 * 36
   ] [
     penup
-    fd :s * 0.618034
-    rt 3 * 36
-    t2 :s * 0.618034 :l - 1
-    lt 2 * 36
-    fd :s * 0.618034
-    rt 3 * 36
-    w2 :s * 0.618034 :l - 1
-    rt 1 * 36
-    fd :s * 0.618034
-    rt 1 * 36
-    fd :s * 0.618034
-    rt 4 * 36
+    ifelse :l % 2 = 1 [
+      fd :s * 0.618034        ; position for t-a
+      rt 3 * 36
+      t2 :s * 0.618034 :l - 1 ; recurse into t2
+      lt 2 * 36               ; position for w-a
+      fd :s * 0.618034
+      rt 3 * 36
+      w2 :s * 0.618034 :l - 1 ; recurse into w2
+      rt 1 * 36               ; position back to original t home
+      fd :s * 0.618034
+      rt 1 * 36
+      fd :s * 0.618034
+      rt 4 * 36
+    ] [
+      lt 3 * 36
+      bk :s * 0.618034
+      w34 :s * 0.618034 * 0.618034 :l - 2 ; double recurse into w34
+      bk :s - (:s * 0.618034)
+      rt 1 * 36
+      w4  :s * 0.618034 * 0.618034 :l - 2 ; double recurse into w4
+      fd :s
+      rt 3 * 36
+    ]
   ]
   penup
 END
@@ -153,6 +165,30 @@ TO w34 :s :l
     w2 :s * 0.618034 :l - 1
     fd :s
     rt 3 * 36
+  ]
+  penup
+END
+
+TO w4 :s :l
+  ifelse :l < 1 [
+    penup
+    fd :s * 1.618034
+    lt 4 * 36
+    fd :s
+    lt 2 * 36
+    pendown
+    fd :s
+    penup
+    lt 4 * 36
+  ] [
+    penup
+    rt 2 * 36
+    fd :s
+    lt 4 * 36
+    w4 :s * 0.618034 :l - 1
+    rt 4 * 36
+    bk :s
+    lt 2 * 36
   ]
   penup
 END
