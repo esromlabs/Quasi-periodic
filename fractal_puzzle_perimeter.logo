@@ -1,10 +1,13 @@
 ;http://www.calormen.com/jslogo/
 TO t1 :s :l
+  pr (word 't1__ :l)
   ifelse :l < 1 [
     ; draw the t1 segment
     rt 2 * 36
     pendown
+    setpencolor "red
     fd :s
+    setpencolor "brown
     penup
     bk :s
     lt 2 * 36
@@ -30,6 +33,7 @@ TO t1 :s :l
       bk :s - (:s * 0.618034)
       rt 1 * 36
       w4  :s * 0.618034 * 0.618034 :l - 2 ; double recurse into w4
+      lt 1 * 36
       fd :s
       rt 3 * 36
     ]
@@ -38,13 +42,16 @@ TO t1 :s :l
 END
 
 TO t2 :s :l
+  pr (word 't2__ :l)
   ifelse :l < 1 [
     penup
     rt 2 *36
     fd :s
     lt 4 * 36
     pendown
+    setpencolor "orange
     fd :s
+    setpencolor "brown
     penup
     rt 2 *36
     bk :s * 0.618034
@@ -67,12 +74,15 @@ TO t2 :s :l
 END
 
 TO t4 :s :l
+  pr (word 't4__ :l)
   ifelse :l < 1 [
     penup
     rt 3 * 36
     bk :s
     pendown
+    setpencolor "yellow
     fd :s
+    setpencolor "brown
     penup
     lt 3 * 36
   ] [
@@ -89,10 +99,13 @@ END
 
 ;
 TO w1 :s :l
+  pr (word 'w1__ :l)
   ifelse :l < 1 [
     rt 1 * 36
     pendown
+    setpencolor "green
     fd :s
+    setpencolor "brown
     penup
     bk :s
     lt 1 * 36
@@ -113,13 +126,16 @@ TO w1 :s :l
 END
 
 TO w2 :s :l
+  pr (word 'w2__ :l)
   ifelse :l < 1 [
     penup
     rt 1 * 36
     fd :s
     lt 2 * 36
     pendown
+    setpencolor "blue
     fd :s
+    setpencolor "brown
     penup
     rt 1 * 36
     bk :s * 1.618034
@@ -141,14 +157,17 @@ TO w2 :s :l
 END
 
 TO w34 :s :l
+  pr (word 'w34_ :l)
   ifelse :l < 1 [
     penup
     fd :s * 1.618034
     lt 4 * 36
     pendown
+    setpencolor "magenta
     fd :s
     lt 2 * 36
     fd :s
+    setpencolor "brown
     penup
     lt 4 * 36
   ] [
@@ -170,36 +189,33 @@ TO w34 :s :l
 END
 
 TO w4 :s :l
+  pr (word 'w4__ :l)
   ifelse :l < 1 [
     penup
-    fd :s * 1.618034
-    lt 4 * 36
-    fd :s
-    lt 2 * 36
+    rt 4 * 36
+    bk :s
     pendown
+    setpencolor "purple
     fd :s
+    setpencolor "brown
     penup
     lt 4 * 36
   ] [
     penup
-    rt 2 * 36
-    fd :s
-    lt 4 * 36
     w4 :s * 0.618034 :l - 1
-    rt 4 * 36
-    bk :s
-    lt 2 * 36
   ]
   penup
 END
 
 
 clearscreen
+cleartext
 setcolor "brown
 bk 100
-t1 200 1
-t2 200 1
-t4 200 1
-w1 200 1
-w2 200 1
-w34 200 1
+t1 200 3
+;t2 200 1
+;t4 200 1
+;w1 200 1
+;w2 200 2
+;w34 200 1
+;w4 200 1
