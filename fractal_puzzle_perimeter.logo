@@ -50,7 +50,9 @@ TO t2 :s :l
     rt 2 * 36
     fd :s * 0.618034
     lt 3 * 36
-    t4 :s * 0.618034 :l - 1
+    if :l == 1 [
+    	t4 :s * 0.618034 :l - 1
+    ]
     lt 3 * 36
     bk :s * 0.618034
   ]
@@ -151,36 +153,36 @@ TO w1 :s :l
   penup
 END
 
-TO w2 :s :l
-  pr (word 'w2__- :l)
-  ifelse :l < 1 [
-    penup
-    rt 1 * 36
-    fd :s
-    lt 2 * 36
-    pendown
-    setpencolor "blue
-    fd :s
-    setpencolor "brown
-    penup
-    rt 1 * 36
-    bk :s * 1.618034
-  ] [
-    penup
-    rt 1 * 36
-    fd :s
-    lt 2 * 36
-    fd :s
-    rt 5 * 36
-    w34 :s * 0.618034 :l - 1
-    lt 5 * 36
-    bk :s
-    rt 2 * 36
-    bk :s
-    lt 1 * 36
-  ]
-  penup
-END
+;;TO w2 :s :l
+;;  pr (word 'w2__- :l)
+;;  ifelse :l < 1 [
+;;    penup
+;;    rt 1 * 36
+;;    fd :s
+;;    lt 2 * 36
+;;    pendown
+;;    setpencolor "blue
+;;    fd :s
+;;    setpencolor "brown
+;;    penup
+;;    rt 1 * 36
+;;    bk :s * 1.618034
+;;  ] [
+;;    penup
+;;    rt 1 * 36
+;;    fd :s
+;;    lt 2 * 36
+;;    fd :s
+;;    rt 5 * 36
+;;    w34 :s * 0.618034 :l - 1
+;;    lt 5 * 36
+;;    bk :s
+;;    rt 2 * 36
+;;    bk :s
+;;    lt 1 * 36
+;;  ]
+;;  penup
+;;END
 
 TO w34 :s :l
   pr (word 'w34_- :l)
@@ -203,13 +205,9 @@ TO w34 :s :l
     w1 :s * 0.618034 :l - 1
     fd :s
     rt 2 * 36
-    t2 :s * 0.618034 :l - 1
-    lt 2 * 36
-    fd :s * 0.618034
-    rt 3 * 36
-    w2 :s * 0.618034 :l - 1
+    t2w2 :s * 0.618034 :l - 1
     fd :s
-    rt 3 * 36
+    rt 4 * 36
   ]
   penup
 END
@@ -238,11 +236,15 @@ clearscreen
 cleartext
 setcolor "brown
 bk 100
-t1 200 2
+;t1 200 0
+
+;t1 200 1
+;t1 200 2
+;t1 200 3
 ;t2 200 1
 ;t4 200 2
-;w1 200 1
-;w2 200 2
-;w34 200 1
+w1 200  2
+w2 200  2
+w34 200 2
 ;w4 200 0
 ;t2w2 200 4
