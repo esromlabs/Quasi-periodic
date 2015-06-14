@@ -1,6 +1,6 @@
 ;http://www.calormen.com/jslogo/
 TO t1 :s :l
-  pr (word 't1__ :l)
+  pr (word 't1__- :l)
   ifelse :l < 1 [
     ; draw the t1 segment
     rt 2 * 36
@@ -13,36 +13,20 @@ TO t1 :s :l
     lt 2 * 36
   ] [
     penup
+    fd :s * 0.618034        ; position for t-a
+    rt 3 * 36
+    t2w2 :s * 0.618034 :l - 1 ; recurse into t2w2
+    lt 3 * 36
+    bk :s * 0.618034        ; position for t-a
     ifelse :l % 2 = 1 [
-      fd :s * 0.618034        ; position for t-a
-      rt 3 * 36
-      t2 :s * 0.618034 :l - 1 ; recurse into t2
-      lt 2 * 36               ; position for w-a
-      fd :s * 0.618034
-      rt 3 * 36
-      w2 :s * 0.618034 :l - 1 ; recurse into w2
-      rt 1 * 36               ; position back to original t home
-      fd :s * 0.618034
-      rt 1 * 36
-      fd :s * 0.618034
-      rt 4 * 36
     ] [
-      lt 3 * 36
-      bk :s * 0.618034
-      w34 :s * 0.618034 * 0.618034 :l - 2 ; double recurse into w34
-      bk :s - (:s * 0.618034)
-      rt 1 * 36
-      w4  :s * 0.618034 * 0.618034 :l - 2 ; double recurse into w4
-      lt 1 * 36
-      fd :s
-      rt 3 * 36
     ]
   ]
   penup
 END
 
 TO t2 :s :l
-  pr (word 't2__ :l)
+  pr (word 't2__- :l)
   ifelse :l < 1 [
     penup
     rt 2 *36
@@ -74,7 +58,7 @@ TO t2 :s :l
 END
 
 TO t4 :s :l
-  pr (word 't4__ :l)
+  pr (word 't4__- :l)
   ifelse :l < 1 [
     penup
     rt 3 * 36
@@ -96,10 +80,52 @@ TO t4 :s :l
   penup
 END
 
+TO t2w2 :s :l
+  pr (word 't2w2- :l)
+  ifelse :l < 1 [
+    ; draw the t2 segment
+    rt 2 * 36
+    fd :s
+    lt 4 * 36
+    pendown
+    setpencolor "gray
+    fd :s
+    setpencolor "brown
+    penup
+    bk :s
+    rt 4 * 36
+    bk :s
+    lt 2 * 36
+    ; draw the w2 segment
+    fd :s * 0.618034
+    pendown
+    setpencolor "gray
+    fd :s
+    setpencolor "brown
+    penup
+    bk :s * 0.618034 + :s
+  ] [
+    penup
+    rt 2 * 36
+    fd :s
+    rt 2 * 36
+    bk :s
+    w34 :s * 0.618034 :l - 1 ; recurse into w34
+    
+    bk :s * 0.618034                    ; position for w
+    rt 1 * 36
+    w4 :s * 0.618034 :l - 1 ; recurse into w4
+    rt 5 * 36
+    bk :s  * 1.618034 
+    
+  ]
+  penup
+END
+
 
 ;
 TO w1 :s :l
-  pr (word 'w1__ :l)
+  pr (word 'w1__- :l)
   ifelse :l < 1 [
     rt 1 * 36
     pendown
@@ -126,7 +152,7 @@ TO w1 :s :l
 END
 
 TO w2 :s :l
-  pr (word 'w2__ :l)
+  pr (word 'w2__- :l)
   ifelse :l < 1 [
     penup
     rt 1 * 36
@@ -157,7 +183,7 @@ TO w2 :s :l
 END
 
 TO w34 :s :l
-  pr (word 'w34_ :l)
+  pr (word 'w34_- :l)
   ifelse :l < 1 [
     penup
     fd :s * 1.618034
@@ -189,7 +215,7 @@ TO w34 :s :l
 END
 
 TO w4 :s :l
-  pr (word 'w4__ :l)
+  pr (word 'w4__- :l)
   ifelse :l < 1 [
     penup
     rt 4 * 36
@@ -212,10 +238,11 @@ clearscreen
 cleartext
 setcolor "brown
 bk 100
-t1 200 3
+t1 200 2
 ;t2 200 1
-;t4 200 1
+;t4 200 2
 ;w1 200 1
 ;w2 200 2
 ;w34 200 1
-;w4 200 1
+;w4 200 0
+;t2w2 200 4
