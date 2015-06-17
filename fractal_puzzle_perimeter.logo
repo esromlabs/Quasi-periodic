@@ -164,36 +164,36 @@ TO w1 :s :l
   penup
 END
 
-;;TO w2 :s :l
-;;  pr (word 'w2__- :l)
-;;  ifelse :l < 1 [
-;;    penup
-;;    rt 1 * 36
-;;    fd :s
-;;    lt 2 * 36
-;;    pendown
-;;    setpencolor "blue
-;;    fd :s
-;;    setpencolor "brown
-;;    penup
-;;    rt 1 * 36
-;;    bk :s * 1.618034
-;;  ] [
-;;    penup
-;;    rt 1 * 36
-;;    fd :s
-;;    lt 2 * 36
-;;    fd :s
-;;    rt 5 * 36
-;;    w34 :s * 0.618034 :l - 1
-;;    lt 5 * 36
-;;    bk :s
-;;    rt 2 * 36
-;;    bk :s
-;;    lt 1 * 36
-;;  ]
-;;  penup
-;;END
+TO w2 :s :l
+  pr (word 'w2__- :l)
+  ifelse :l < 1 [
+    penup
+    rt 1 * 36
+    fd :s
+    lt 2 * 36
+    pendown
+    setpencolor "blue
+    fd :s
+    setpencolor "brown
+    penup
+    rt 1 * 36
+    bk :s * 1.618034
+  ] [
+    penup
+    rt 1 * 36
+    fd :s
+    lt 2 * 36
+    fd :s
+    rt 5 * 36
+    w34 :s * 0.618034 :l - 1
+    lt 5 * 36
+    bk :s
+    rt 2 * 36
+    bk :s
+    lt 1 * 36
+  ]
+  penup
+END
 
 TO w34 :s :l
   pr (word 'w34_- :l)
