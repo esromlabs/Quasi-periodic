@@ -160,7 +160,7 @@ TO w1 :s :l
     w34 :s * 0.618034 :l - 1
     rt 2 * 36
     fd :s * 0.618034
-    lt 3 * 36
+    rt 3 * 36
     if :l >= 1 [
       pendown
       setpencolor "tan
@@ -170,6 +170,7 @@ TO w1 :s :l
       penup
     	t4 :s * 0.618034 :l - 1
     ]
+    rt 4 * 36
     fd :s
     rt 4 * 36
   ]
