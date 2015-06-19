@@ -163,12 +163,12 @@ TO w1 :s :l
     rt 3 * 36
     if :l >= 1 [
       ;rt 4 * 36
-      pendown
-      setpencolor "tan
-      arc 360 10 
-      fd 10
-      bk 10
-      penup
+      ;pendown
+      ;setpencolor "tan
+      ;arc 360 10 
+      ;fd 10
+      ;bk 10
+      ;penup
       t4 :s * 0.618034 :l - 1
       ;lt 4 * 36
     ]
@@ -258,11 +258,12 @@ cleartext
 setcolor "brown
 bk 100
 ;t1 200 0
-  ;t1 200 1
+;t1 200 1
 ;t1 200 2
 ;t1 200 3
 ;t2 200 1
 ;t4 200 2
+w1 200 0
 w1 200 3
 ;w2 200 3
 ;w34 200 4
