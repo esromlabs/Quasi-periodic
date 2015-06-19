@@ -1,5 +1,7 @@
+;http://www.calormen.com/jslogo/
 TO t :s
   pendown
+  ; decorate with an arc that indicates the orientation of the rhombus
   lt 2 * 36
   arc 4 * 36 :s * 0.618034 / 2
   rt 2 * 36
@@ -19,8 +21,9 @@ END
 
 TO w :s
   pendown
+  ; decorate with an arc that indicates the orientation of the rhombus
   lt 1 * 36
-  arc 2 * 36 :s * 0.618034 / 2
+  arc 2 * 36 :s * 0.618034
   rt 1 * 36
 
   rt 1 * 36
@@ -36,8 +39,8 @@ TO w :s
   penup
 END 
 
-; generate rotation scale kind recursion depth
-TO gen :r :s :k :depth
+; generate rotation scale kind recursion_depth paint_all_levels
+TO gen :s :k :depth :paint_all
   ifelse :depth < 1 [
     setcolor :depth
     if :k = 't' [
@@ -50,21 +53,22 @@ TO gen :r :s :k :depth
     if :k = 't' [
       ; generate a t and w
       ; first the t
-      
-      
-      lt 0 * 36
       fd :s * 0.618034
       rt 3 * 36
       setcolor :depth
-      t :s * 0.618034
-      gen (:r + 0)%10 :s * 0.618034 't' :depth - 1
+      if :paint_all [
+        t :s * 0.618034
+      ]
+      gen :s * 0.618034 't' :depth - 1 :paint_all
       
       lt 2 * 36
       fd :s * 0.618034
       rt 3 * 36
       setcolor :depth
-      w :s * 0.618034
-      gen (:r + 3)%10 :s * 0.618034 'w' :depth - 1
+      if :paint_all [
+        w :s * 0.618034
+      ]
+      gen :s * 0.618034 'w' :depth - 1 :paint_all
 
       rt 1 * 36
       fd :s * 0.618034
@@ -80,16 +84,20 @@ TO gen :r :s :k :depth
       fd :s
       rt 5 * 36
       setcolor :depth
-      w :s * 0.618034
-      gen (:r +0)%10 :s * 0.618034 'w' :depth - 1
+      if :paint_all [
+        w :s * 0.618034
+      ]
+      gen :s * 0.618034 'w' :depth - 1 :paint_all
       
       
       rt 2 * 36
       fd :s * 0.618034
       lt 3 * 36
       setcolor :depth
-      t :s * 0.618034
-      gen (:r - 0)%10 :s * 0.618034 't' :depth - 1
+      if :paint_all [
+        t :s * 0.618034
+      ]
+      gen :s * 0.618034 't' :depth - 1 :paint_all
       
       ; last another w
       
@@ -99,8 +107,10 @@ TO gen :r :s :k :depth
       fd :s * 0.618034
       rt 4 * 36
       setcolor :depth
-      w :s * 0.618034
-      gen (:r + 0)%10 :s * 0.618034 'w' :depth - 1
+      if :paint_all [
+        w :s * 0.618034
+      ]
+      gen :s * 0.618034 'w' :depth - 1 :paint_all
       rt 1 * 36
       fd :s * 1.618034
       lt 5 * 36
@@ -110,6 +120,7 @@ TO gen :r :s :k :depth
 END
   
 clearscreen
+penup
 setcolor "brown
 fd -160
 lt 90
@@ -118,7 +129,7 @@ rt 90
 
 ; level one test of 't'
 t 300
-gen 0 300 't' 5
+gen 300 't' 5 1
 
 setcolor "brown
 rt 90
@@ -126,4 +137,4 @@ fd 480
 lt 90
 ; level one test of 'w'
 w 300
-gen 0 300 'w' 5
+gen 300 'w' 5 1
