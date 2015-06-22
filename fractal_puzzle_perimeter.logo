@@ -12,6 +12,7 @@ TO t1 :s :l
     bk :s
     lt 2 * 36
   ] [
+    ; generate t2w2
     penup
     fd :s * 0.618034
       ; position for t-a
