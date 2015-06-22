@@ -50,30 +50,33 @@ TO gen :s :k :depth :paint_all
       w :s
     ]
   ] [
+    localmake "dep :depth - 1
+    localmake "scale :s * 0.618034
+    
     if :k = 't' [
       ; generate a t and w
       ; first the t
-      fd :s * 0.618034
+      fd :scale
       rt 3 * 36
       setcolor :depth
       if :paint_all [
-        t :s * 0.618034
+        t :scale
       ]
-      gen :s * 0.618034 't' :depth - 1 :paint_all
+      gen :scale 't' :dep :paint_all
       
       lt 2 * 36
-      fd :s * 0.618034
+      fd :scale
       rt 3 * 36
       setcolor :depth
       if :paint_all [
-        w :s * 0.618034
+        w :scale
       ]
-      gen :s * 0.618034 'w' :depth - 1 :paint_all
+      gen :scale 'w' :dep :paint_all
 
       rt 1 * 36
-      fd :s * 0.618034
+      fd :scale
       rt 1 * 36
-      fd :s * 0.618034
+      fd :scale
 
       rt 4 * 36    
     ]
@@ -85,32 +88,32 @@ TO gen :s :k :depth :paint_all
       rt 5 * 36
       setcolor :depth
       if :paint_all [
-        w :s * 0.618034
+        w :scale
       ]
-      gen :s * 0.618034 'w' :depth - 1 :paint_all
+      gen :scale 'w' :dep :paint_all
       
       
       rt 2 * 36
-      fd :s * 0.618034
+      fd :scale
       lt 3 * 36
       setcolor :depth
       if :paint_all [
-        t :s * 0.618034
+        t :scale
       ]
-      gen :s * 0.618034 't' :depth - 1 :paint_all
+      gen :scale 't' :dep :paint_all
       
       ; last another w
       
       rt 2 * 36
-      fd :s * 0.618034
+      fd :scale
       rt 2 * 36
-      fd :s * 0.618034
+      fd :scale
       rt 4 * 36
       setcolor :depth
       if :paint_all [
-        w :s * 0.618034
+        w :scale
       ]
-      gen :s * 0.618034 'w' :depth - 1 :paint_all
+      gen :scale 'w' :dep :paint_all
       rt 1 * 36
       fd :s * 1.618034
       lt 5 * 36
@@ -122,19 +125,23 @@ END
 clearscreen
 penup
 setcolor "brown
-fd -160
+fd -140
 lt 90
-fd 280
+fd 250
 rt 90
 
+rt 1 * 36
 ; level one test of 't'
-t 300
-gen 300 't' 5 1
+t 200
+gen 200 't' 8 0
+lt 1 * 36
+
 
 setcolor "brown
 rt 90
-fd 480
+fd 420
 lt 90
+
 ; level one test of 'w'
-w 300
-gen 300 'w' 5 1
+w 200
+gen 200 'w' 8 0
