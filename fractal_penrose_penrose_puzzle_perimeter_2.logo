@@ -1,0 +1,67 @@
+to r :s
+  rt :s * 36
+end
+
+to l :s
+  lt :s * 36
+end
+
+to w1 :s :l
+  make "tl :l - 1
+  if :tl < 0 [
+    pendown
+    r 1
+    fd :s
+    penup
+  ]
+  make "ts :s * 0.618034
+  if :tl >= 0 [
+    ; gen w34, t4
+    penup
+
+    l 3
+    bk :s
+    w34 :ts :tl
+    fd :s
+    r 3
+    
+    l 4
+    bk :s
+    t4 :ts :tl
+    fd :s
+    r 4
+  ] 
+end
+
+to w34 :s :l
+  make "tl :l - 1
+  if :tl < 0 [
+    penup
+    r 4
+    bk :s
+    r 2
+    bk :s
+    pendown
+    fd :s
+    l 2
+    fd :s
+    penup
+    l 4
+  ]
+end
+
+to t4 :s :l
+  make "tl :l - 1
+  if :tl < 0 [
+    penup
+    r 3
+    bk :s
+    pendown
+    fd :s
+    penup
+    l 3
+  ]
+end
+
+clearscreen
+w1 100 1
