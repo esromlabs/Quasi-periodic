@@ -27,7 +27,7 @@ TO t1 :s :l
   ]
   penup
 END
-  TO t2 :s :l
+TO t2 :s :l
   pr (word 't2__- :l)
   ifelse :l < 1 [
     penup
@@ -71,36 +71,28 @@ TO t4 :s :l
   pr (word 't4__- :l)
   ifelse :l < 1 [
     penup
-    rt 7 * 36
+    rt 3 * 36
     bk :s
     pendown
     setpencolor "yellow
     fd :s
     setpencolor "brown
     penup
-    lt 7 * 36
+    lt 3 * 36
   ] [
     penup
-    ifelse :l < 1 [
-      fd :s * 0.618034
-      rt 3 * 36
-      t1 :s * 0.618034 :l - 1
-      lt 3 * 36
-      bk :s * 0.618034
-    ]
-    [
-      ;rt 1 * 36
-      fd :s * 0.618034
-      rt 3 * 36
-      t2w2 :s * 0.618034 :l - 1
-      lt 3 * 36
-      bk :s * 0.618034
-      ;lt 1 * 36
-    ]
+    ; generate -> w34
+    ;rt 1 * 36
+    fd :s * 0.618034
+    rt 3 * 36
+    t2w2 :s * 0.618034 :l - 1
+    lt 3 * 36
+    bk :s * 0.618034
+    ;lt 1 * 36
   ]
   penup
 END
-  TO t2w2 :s :l
+TO t2w2 :s :l
   pr (word 't2w2- :l)
   ifelse :l < 1 [
     ; draw the t2 segment
@@ -126,22 +118,22 @@ END
     bk :s * 0.618034 + :s
   ] [
     penup
+    ;generate -> w34, w4
     rt 2 * 36
     fd :s
     rt 2 * 36
     bk :s
     w34 :s * 0.618034 :l - 1 ; recurse into w34
-          bk :s * 0.618034
-                  ; position for w
+    bk :s * 0.618034
+    ; position for w4
     rt 1 * 36
     w4 :s * 0.618034 :l - 1 ; recurse into w4
     rt 5 * 36
-    bk :s
-* 1.618034
-         ]
+    bk :s * 1.618034
+  ]
   penup
 END
-    ;
+;
 TO w1 :s :l
   pr (word 'w1__- :l)
   ifelse :l < 1 [
@@ -155,31 +147,22 @@ TO w1 :s :l
     lt 1 * 36
   ] [
     penup
+    ;generate -> w34, t4
     rt 2 * 36
     fd :s
     rt 5 * 36
     w34 :s * 0.618034 :l - 1
     rt 2 * 36
     fd :s * 0.618034
-    rt 3 * 36
-    if :l >= 1 [
-      ;rt 4 * 36
-      ;pendown
-      ;setpencolor "tan
-      ;arc 360 10 
-      ;fd 10
-      ;bk 10
-      ;penup
-      t4 :s * 0.618034 :l - 1
-      ;lt 4 * 36
-    ]
-    rt 4 * 36
+    lt 3 * 36
+    t4 :s * 0.618034 :l - 1
     fd :s
     rt 4 * 36
   ]
   penup
 END
-  TO w2 :s :l
+
+TO w2 :s :l
   pr (word 'w2__- :l)
   ifelse :l < 1 [
     penup
@@ -209,7 +192,8 @@ END
   ]
   penup
 END
-  TO w34 :s :l
+
+TO w34 :s :l
   pr (word 'w34_- :l)
   ifelse :l < 1 [
     penup
@@ -225,6 +209,7 @@ END
     lt 4 * 36
   ] [
     penup
+    ; generate -> w1, t2w2
     fd :s * 1.618034
     rt 4 * 36
     w1 :s * 0.618034 :l - 1
@@ -236,7 +221,40 @@ END
   ]
   penup
 END
-  TO w4 :s :l
+
+TO w3 :s :l
+  pr (word 'w3__- :l)
+  ifelse :l < 1 [
+    penup
+    lt 1 * 36
+    fd :s
+    lt 3 * 36
+    bk :s
+    pendown
+    setpencolor "gray
+    fd :s
+    setpencolor "brown
+    penup
+    rt 2 * 36
+    fd :s
+    rt 3 * 36
+  ] [
+    penup
+    ; generate -> w1, t4
+    fd :s * 1.618034
+    rt 4 * 36
+    w1 :s * 0.618034 :l - 1
+    rt 2 * 36
+    fd :s
+    lt 2 * 36
+    t4 :s * 0.618034 :l - 1
+    fd :s
+    lt 4 * 36
+  ]
+  penup
+END
+
+TO w4 :s :l
   pr (word 'w4__- :l)
   ifelse :l < 1 [
     penup
@@ -250,11 +268,23 @@ END
     lt 4 * 36
   ] [
     penup
-    w4 :s * 0.618034 :l - 1
+    ; generate -> w3, t2w2
+    ;removed w4 :s * 0.618034 :l - 1
+    fd :s * 1.618034
+    lt 4 * 36
+    w3 :s * 0.618034 :l - 1
+    lt 2 * 36
+    fd :s
+    rt 2 * 36
+    t2w2 :s * 0.618034 :l - 1
+    fd :s
+    rt 4 * 36
   ]
   penup
 END
-    clearscreen
+
+
+clearscreen
 cleartext
 setcolor "brown
 bk 100
@@ -265,7 +295,7 @@ bk 100
 ;t2 200 1
 ;t4 200 2
 w1 200 0
-w1 200 3
+w1 200 1
 ;w2 200 3
 ;w34 200 4
 ;w4 200 0
