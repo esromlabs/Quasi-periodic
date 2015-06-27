@@ -40,7 +40,7 @@ TO w :s
 END 
 
 ; generate rotation scale kind recursion_depth paint_all_levels
-TO gen :s :k :depth :paint_all
+TO gen :s :k :depth :paint_at_level
   ifelse :depth < 1 [
     setcolor :depth
     if :k = 't' [
@@ -59,19 +59,19 @@ TO gen :s :k :depth :paint_all
       fd :scale
       rt 3 * 36
       setcolor :depth
-      if :paint_all [
+      if :paint_at_level >= :depth [
         t :scale
       ]
-      gen :scale 't' :dep :paint_all
+      gen :scale 't' :dep :paint_at_level
       
       lt 2 * 36
       fd :scale
       rt 3 * 36
       setcolor :depth
-      if :paint_all [
+      if :paint_at_level >= :depth [
         w :scale
       ]
-      gen :scale 'w' :dep :paint_all
+      gen :scale 'w' :dep :paint_at_level
 
       rt 1 * 36
       fd :scale
@@ -87,20 +87,20 @@ TO gen :s :k :depth :paint_all
       fd :s
       rt 5 * 36
       setcolor :depth
-      if :paint_all [
+      if :paint_at_level >= :depth [
         w :scale
       ]
-      gen :scale 'w' :dep :paint_all
+      gen :scale 'w' :dep :paint_at_level
       
       
       rt 2 * 36
       fd :scale
       lt 3 * 36
       setcolor :depth
-      if :paint_all [
+      if :paint_at_level >= :depth [
         t :scale
       ]
-      gen :scale 't' :dep :paint_all
+      gen :scale 't' :dep :paint_at_level
       
       ; last another w
       
@@ -110,22 +110,21 @@ TO gen :s :k :depth :paint_all
       fd :scale
       rt 4 * 36
       setcolor :depth
-      if :paint_all [
+      if :paint_at_level >= :depth [
         w :scale
       ]
-      gen :scale 'w' :dep :paint_all
+      gen :scale 'w' :dep :paint_at_level
       rt 1 * 36
       fd :s * 1.618034
       lt 5 * 36
     ]
   ]
-  
 END
   
 clearscreen
 penup
 setcolor "brown
-fd -140
+fd -120
 lt 90
 fd 250
 rt 90
@@ -133,7 +132,7 @@ rt 90
 rt 1 * 36
 ; level one test of 't'
 t 200
-gen 200 't' 8 0
+gen 200 't' 6 2
 lt 1 * 36
 
 
@@ -144,4 +143,4 @@ lt 90
 
 ; level one test of 'w'
 w 200
-gen 200 'w' 8 0
+gen 200 'w' 6 2
