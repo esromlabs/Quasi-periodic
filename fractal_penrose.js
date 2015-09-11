@@ -19,9 +19,9 @@ function t (s) {
   yurt.pu();
 }
 
-TO w :s
-  pendown
-  ; decorate with an arc that indicates the orientation of the rhombus
+function w (s) {
+  yurt.pd();
+  // decorate with an arc that indicates the orientation of the rhombus
   lt 1 * 36
   arc 2 * 36 :s * 0.618034
   rt 1 * 36
@@ -39,7 +39,7 @@ TO w :s
   penup
 END
 
-; generate rotation scale kind recursion_depth paint_all_levels
+// generate rotation scale kind recursion_depth paint_all_levels
 TO gen :s :k :depth :paint_at_level
   ifelse :depth < 1 [
     setcolor :depth
@@ -54,8 +54,8 @@ TO gen :s :k :depth :paint_at_level
     localmake "scale :s * 0.618034
 
     if :k = 't' [
-      ; generate a t and w
-      ; first the t
+      // generate a t and w
+      // first the t
       fd :scale
       rt 3 * 36
       setcolor :depth
@@ -81,8 +81,8 @@ TO gen :s :k :depth :paint_at_level
       rt 4 * 36
     ]
     if :k = 'w' [
-      ; w -> w t w
-      ; first generate w
+      // w -> w t w
+      // first generate w
       rt 2 * 36
       fd :s
       rt 5 * 36
@@ -102,7 +102,7 @@ TO gen :s :k :depth :paint_at_level
       ]
       gen :scale 't' :dep :paint_at_level
 
-      ; last another w
+      // last another w
 
       rt 2 * 36
       fd :scale
@@ -130,7 +130,7 @@ fd 250
 rt 90
 
 rt 1 * 36
-; level one test of 't'
+// level one test of 't'
 t 200
 gen 200 't' 6 2
 lt 1 * 36
@@ -140,6 +140,6 @@ rt 90
 fd 420
 lt 90
 
-; level one test of 'w'
+// level one test of 'w'
 w( 200);
 gen( 200, 'w', 6, 2);
