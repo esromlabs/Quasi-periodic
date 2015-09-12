@@ -1,12 +1,13 @@
 // You have a turtle named 'yurt' at the ready.
 function t (s) {
+  'use strict';
   yurt.pd();
   // decorate with an arc that indicates the orientation of the rhombus
-  yurt.lt(2 * 36);
-  yurt.arc 4 * 36 :s * 0.618034 / 2
-  yurt.rt 2 * 36);
+  //yurt.lt(2 * 36);
+  //yurt.arc 4 * 36 :s * 0.618034 / 2
+  //yurt.rt(2 * 36);
 
-  yurt.rt 2 * 36);
+  yurt.rt(2 * 36);
   yurt.fd(s);
   yurt.lt(4 * 36);
   yurt.fd(s);
@@ -20,15 +21,16 @@ function t (s) {
 }
 
 function w (s) {
+  'use strict';
   yurt.pd();
   // decorate with an arc that indicates the orientation of the rhombus
-  lt 1 * 36
-  arc 2 * 36 :s * 0.618034
-  rt 1 * 36
+  //yurt.lt(1 * 36
+  //arc 2 * 36 :s * 0.618034
+  //yurt.rt(1 * 36
 
-  rt 1 * 36
+  yurt.rt(1 * 36);
   yurt.fd(s);
-  yurt.lt(2 * 36
+  yurt.lt(2 * 36);
   yurt.fd(s);
   yurt.lt(3 * 36);
   yurt.fd(s);
@@ -36,110 +38,113 @@ function w (s) {
   yurt.fd(s);
   yurt.lt(3 * 36);
   yurt.lt(1 * 36);
-  penup
-END
+  yurt.pu();
+}
 
 // generate rotation scale kind recursion_depth paint_all_levels
-TO gen :s :k :depth :paint_at_level
-  ifelse :depth < 1 [
-    setcolor :depth
-    if :k = 't' [
-      t :s
-    ]
-    if :k = 'w' [
-      w :s
-    ]
-  ] [
-    localmake "dep :depth - 1
-    localmake "scale :s * 0.618034
+function gen (s, k, depth, paint_at_level) {
+  'use strict';
+  var dep, scale;
+  if (depth < 1) {
+    //setcolor :depth
+    if (k === 't') {
+      t(s);
+    }
+    if (k === 'w') {
+      w(s);
+    }
+  }
+  else {
+    dep = depth -1;
+    scale = s * 0.618034;
 
-    if :k = 't' [
+    if (k === 't') {
       // generate a t and w
       // first the t
-      fd :scale
-      rt 3 * 36
-      setcolor :depth
-      if :paint_at_level >= :depth [
-        t :scale
-      ]
-      gen :scale 't' :dep :paint_at_level
+      yurt.fd(scale);
+      yurt.rt(3 * 36);
+      //setcolor :depth
+      if (paint_at_level >= depth) {
+        t(scale);
+      }
+      gen(scale, 't', dep, paint_at_level);
 
-      lt 2 * 36
-      fd :scale
-      rt 3 * 36
-      setcolor :depth
-      if :paint_at_level >= :depth [
-        w :scale
-      ]
-      gen :scale 'w' :dep :paint_at_level
+      yurt.lt(2 * 36);
+      yurt.fd(scale);
+      yurt.rt(3 * 36);
+      //setcolor :depth
+      if (paint_at_level >= depth) {
+        w(scale);
+      }
+      gen(scale, 'w', dep, paint_at_level);
 
-      rt 1 * 36
-      fd :scale
-      rt 1 * 36
-      fd :scale
+      yurt.rt(1 * 36);
+      yurt.fd(scale);
+      yurt.rt(1 * 36);
+      yurt.fd(scale);
 
-      rt 4 * 36
-    ]
-    if :k = 'w' [
+      yurt.rt(4 * 36);
+  }
+    if (k === 'w') {
       // w -> w t w
       // first generate w
-      rt 2 * 36
-      fd :s
-      rt 5 * 36
-      setcolor :depth
-      if :paint_at_level >= :depth [
-        w :scale
-      ]
-      gen :scale 'w' :dep :paint_at_level
+      yurt.rt(2 * 36);
+      yurt.fd(s);
+      yurt.rt(5 * 36);
+      //setcolor :depth
+      if (paint_at_level >= depth) {
+        w(scale);
+      }
+      gen(scale, 'w', dep, paint_at_level);
 
 
-      rt 2 * 36
-      fd :scale
-      lt 3 * 36
-      setcolor :depth
-      if :paint_at_level >= :depth [
-        t :scale
-      ]
-      gen :scale 't' :dep :paint_at_level
+      yurt.rt(2 * 36);
+      yurt.fd(scale);
+      yurt.lt(3 * 36);
+      //setcolor :depth
+      if(paint_at_level >= depth) {
+        t(scale);
+      }
+      gen(scale, 't', dep, paint_at_level);
 
       // last another w
 
-      rt 2 * 36
-      fd :scale
-      rt 2 * 36
-      fd :scale
-      rt 4 * 36
-      setcolor :depth
-      if :paint_at_level >= :depth [
-        w :scale
-      ]
-      gen :scale 'w' :dep :paint_at_level
-      rt 1 * 36
-      fd :s * 1.618034
-      lt 5 * 36
-    ]
-  ]
-END
+      yurt.rt(2 * 36);
+      yurt.fd(scale);
+      yurt.rt(2 * 36);
+      yurt.fd(scale);
+      yurt.rt(4 * 36);
+      //setcolor :depth
+      if (paint_at_level >= depth) {
+        w(scale);
+      }
+      gen(scale, 'w', dep, paint_at_level);
+      yurt.rt(1 * 36);
+      yurt.fd(s * 1.618034);
+      yurt.lt(5 * 36);
+    }
+  }
+}
 
-clearscreen
-penup
-setcolor "brown
-fd -120
-lt 90
-fd 250
-rt 90
+yurt.cs();
+yurt.pu();
+//setcolor "brown
+yurt.fd(-120);
+yurt.lt(90);
+yurt.fd(250);
+yurt.rt(90);
 
-rt 1 * 36
+yurt.rt(1 * 36);
 // level one test of 't'
-t 200
-gen 200 't' 6 2
-lt 1 * 36
+t(200);
+gen(200, 't', 6, 2);
+yurt.lt(1 * 36);
 
 
-rt 90
-fd 420
-lt 90
+yurt.rt(90);
+yurt.fd(420);
+yurt.lt(90);
 
 // level one test of 'w'
-w( 200);
-gen( 200, 'w', 6, 2);
+w(200);
+gen(200, 'w', 6, 2);
