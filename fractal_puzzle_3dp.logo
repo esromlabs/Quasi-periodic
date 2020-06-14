@@ -126,21 +126,30 @@ penup
 setcolor "brown
 fd -120
 lt 90
-fd 250
+fd 340
 rt 90
 
 rt 1 * 36
 ; level one test of 't'
-t 200
-gen 200 't' 6 2
+t :scale
+gen :scale 't' :lev :colorlev
 lt 1 * 36
 
 
 setcolor "brown
-rt 90
-fd 420
-lt 90
+rt 72
+fd :scale
+lt 72
+rt 180
+fd (123 / 200) * :scale
+rt 180
+
 
 ; level one test of 'w'
-w 200
-gen 200 'w' 6 2
+w :scale
+gen :scale 'w' :lev :colorlev
+
+
+name 7 "lev
+name 1 "colorlev
+name 430 "scale
